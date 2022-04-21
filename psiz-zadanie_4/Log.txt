@@ -1,0 +1,24 @@
+Thu Apr 21 23:56:20 2022
+- utworzono plik: plik1.bin
+
+Thu Apr 21 23:56:20 2022
+- utworzono plik: plik2.bin
+
+Thu Apr 21 23:56:20 2022
+- utworzono plik: plik3.bin
+
+Thu Apr 21 23:56:20 2022
+- utworzono plik: plik4.bin
+
+Thu Apr 21 23:57:26 2022
+- utworzono plik: plik5.bin
+
+Thu Apr 21 23:58:44 2022
+- utworzono plik: plik6.bin
+
+Thu Apr 21 23:58:44 2022
+- uruchomiono program
+
+Fri Apr 22 00:02:20 2022
+- uruchomiono program
+
