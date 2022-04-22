@@ -139,7 +139,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="psiz-zadanie_4.cpp" />
+    <ClCompile Include="konwerterCzasu.cpp" />
+    <ClCompile Include="pliki.cpp" />
+    <ClCompile Include="hammingDistance.cpp" />
+    <ClCompile Include="plikLog.cpp" />
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="konwerterCzasu.h" />
+    <ClInclude Include="pliki.h" />
+    <ClInclude Include="hammingDistance.h" />
+    <ClInclude Include="plikLog.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
