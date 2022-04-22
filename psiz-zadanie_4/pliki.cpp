@@ -1,26 +1,4 @@
-#define _CRT_SECURE_NO_WARNINGS
-#include <iostream>
-#include <fstream>
-#include <time.h>
-#include<algorithm>
-
-using namespace std;
-
-// time_t now = time(NULL);
-// char* dt = ctime(&now);
-
-void createFile(const string nazwaPliku, const int licznik, const char wartosci);
-void plikLog(const string wartoscLoga);
-void files();
-
-int main(int argc, char* argv[])
-{
-	time_t now = time(NULL);
-	string dt = ctime(&now);
-	plikLog(dt + "- uruchomiono program\n");
-	srand(time(NULL));
-	files();
-}
+#include "pliki.h"
 
 void files() {
 	createFile("plik1.bin", 100, 0x55);
@@ -31,17 +9,9 @@ void files() {
 	createFile("plik6.bin", 1024 * 1024 * 400, 0x50);
 }
 
-void plikLog(const string wartoscLoga) {
-	const string log = "Log.txt";
-
-	ofstream plik;
-	plik.open(log, ios_base::app);
-	plik << wartoscLoga + "\n";
-	plik.close();
-}
-
 void createFile(const string nazwaPliku, const int licznik, const char wartosci)
 {
+	srand(time(NULL));
 	ifstream mojPlik;
 	mojPlik.open(nazwaPliku);
 	const char innyZnak = 0x44;
@@ -49,13 +19,14 @@ void createFile(const string nazwaPliku, const int licznik, const char wartosci)
 	bool jestOk = false;
 	int temp = {};
 	int k = 0;
-	double procent = licznik / 100;
-	double pp = procent;
+	float procent = licznik / 100;
+	float KolejnePrzedzialy = procent;
 	int p = 0;
 
 	if (mojPlik)
 	{
-		cout << "Plik:" + nazwaPliku + " juz istnieje\n";
+	//	cout << "Plik:" + nazwaPliku + " juz istnieje\n";
+		plikLog("- pominiêto tworzenie pliku: " + nazwaPliku + " | plik ju¿ istnieje.\n");
 	}
 	else {
 
@@ -94,7 +65,6 @@ void createFile(const string nazwaPliku, const int licznik, const char wartosci)
 					{
 						plik << wartosci;
 
-
 					}
 
 					plik << innyZnak;
@@ -119,9 +89,9 @@ void createFile(const string nazwaPliku, const int licznik, const char wartosci)
 				plik << wartosci;
 
 				if (nazwaPliku == "plik5.bin" || nazwaPliku == "plik6.bin")
-					if (i == pp) {
+					if (i == KolejnePrzedzialy) {
 						p++;
-						pp = pp + procent;
+						KolejnePrzedzialy = KolejnePrzedzialy + procent;
 						system("cls");
 						cout << nazwaPliku << ": " << p << "%";
 					}
@@ -129,9 +99,8 @@ void createFile(const string nazwaPliku, const int licznik, const char wartosci)
 		}
 
 
-		time_t now = time(NULL);
-		string dt = ctime(&now);
-		string log = dt + "- utworzono plik: " + nazwaPliku + "\n";
+
+		string log ="- utworzono plik: " + nazwaPliku + "\n";
 
 		//string log = dt + " - utworzono plik: " + nazwaPliku;
 		plikLog(log);
@@ -140,7 +109,3 @@ void createFile(const string nazwaPliku, const int licznik, const char wartosci)
 	}
 
 }
-
-
-
-
