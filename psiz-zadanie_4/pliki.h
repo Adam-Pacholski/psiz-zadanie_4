@@ -5,6 +5,9 @@
 #include<algorithm>
 #include <time.h>
 
+#include <vector>
+#include <bitset>
+
 #include "konwerterCzasu.h"
 #include "hammingDistance.h"
 #include "plikLog.h"

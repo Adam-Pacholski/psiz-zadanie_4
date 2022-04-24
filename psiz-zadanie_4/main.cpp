@@ -17,7 +17,7 @@ int main(int argc, char* argv[])
 {
 
 
-	pliki();
+	
 
 	if (argc == 1) menu("nie podajac ");
 	else if (argc < 3) menu("podajac za malo ");
@@ -48,7 +48,8 @@ void menu(string wiadomosc) {
 	do
 	{
 		cout << " Co chcesz zrobic: ";
-		cin >> opcja;
+		//cin >> opcja;
+		opcja = 1;
 		if (opcja) {
 
 			switch (opcja)
@@ -58,7 +59,7 @@ void menu(string wiadomosc) {
 				plikLog("- Uzytkownik wybral opcje [1] - automatyczne obliczenia BER\n");
 				pliki();
 				//dzialaniaNaPlikach("plik1.bin", "plik2.bin");
-				//dzialaniaNaPlikach("plik3.bit", "plik4.bit");
+				//dzialaniaNaPlikach("plik3.bin", "plik4.bin");
 				dzialaniaNaPlikach("plik5.bin", "plik6.bin");
 			}
 			case 2:

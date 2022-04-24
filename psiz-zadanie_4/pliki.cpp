@@ -1,8 +1,11 @@
 #include "pliki.h"
 
+#include<string>
+using std::bitset;
+
 void pliki() {
-	tworzeniePlikow("plik1.bin", 100, 0x55);
-	tworzeniePlikow("plik2.bin", 100, 0x55);
+	tworzeniePlikow("plik1.bin", 2, 0x55);
+	tworzeniePlikow("plik2.bin", 2, 0x50);
 	tworzeniePlikow("plik3.bin", 100, 0x55);
 	tworzeniePlikow("plik4.bin", 100, 0x55);
 	tworzeniePlikow("plik5.bin", 1024 * 1024 * 400, 0x55);
@@ -111,25 +114,70 @@ void tworzeniePlikow(const string nazwaPliku, const int licznik, const char wart
 
 void dzialaniaNaPlikach(const char* _plik1, const char* _plik2) {
 	clock_t t;
-
-	int bity = {}, bity2 = {};
 	ifstream plik1, plik2;
+	int iloscBitow = 0;
+	int x{};
+
+	char a{};
+	char b{};
+	cout << "Obliczam, prosze o cierpliwosc...";
+	plik1.open(_plik1, ios::binary | ios::in);
+	plik2.open(_plik2, ios::binary | ios::in);
+
+	t = clock();
+	while (!plik1.eof())
+	{
+		plik1 >> a;
+		plik2 >> b;
+		bitset<8> bit(a);
+		bitset<8> bit2(b);
+
+		if (a == '\0' || b == '\0') break;
+
+		//cout << "\n" << bit << "\n" << bit2 << "\n";
+		x = hammingDistance(a, b) + x;
+		iloscBitow = iloscBitow + 8;
+		a = '\0';
+		b = '\0';
+		/*	for (size_t i = 0; i < 8; i++)
+			{
+				iloscBitow++;
+				if (bit[i] != bit2[i]) {
+					x++;
+				}
+			}*/
+		cout << "\n" << iloscBitow << " | " << x;
+	}
+	t = (clock() - t) / CLOCKS_PER_SEC;
+
+	plik1.close();
+	plik2.close();
+
+
+	cout << "\n Roznych bitow: " << x << "\n sprawdzonych bitow: " << iloscBitow << "\n czas sprawdzenie: " << zamianaCzasu(t) << "\n";
+
+
+	//plik1.close();
+	//plik2.open(_plik2, ios::binary | ios::in);
+
+
+	/*
 
 	plik1.open(_plik1, ios::binary);
 
 	if (plik1.good()) {
-		//plikLog("- otworzono plik 1\n");
+		plikLog("- otworzono plik 1\n");
 		plik1.read((char*)&bity, sizeof(bity));
 		plik1.close();
-	//	plikLog("- zamknieto plik 1\n");
+		plikLog("- zamknieto plik 1\n");
 	}
 	else {
-		//plikLog("- nie znaleziono pliku 1\n");
+		plikLog("- nie znaleziono pliku 1\n");
 	}
 
 	plik2.open(_plik2, ios::binary);
 
-	if (plik2) {
+	 if (plik2) {
 		plikLog("- otworzono plik 2\n");
 		plik2.read((char*)&bity2, sizeof(bity2));
 		plik2.close();
@@ -138,6 +186,8 @@ void dzialaniaNaPlikach(const char* _plik1, const char* _plik2) {
 	else {
 		plikLog("- nie znaleziono pliku 2\n");
 	}
+
+
 	cout << "bity: " << bity << "\n";
 	cout << "bity2: " << bity2 << "\n";
 
@@ -148,4 +198,6 @@ void dzialaniaNaPlikach(const char* _plik1, const char* _plik2) {
 	cout << "Compared bits: " << bity + bity2 << "\n";
 	cout << "Different bits : " << static_cast<int>(ber) << "\n";
 	cout << "Calc time : " << zamianaCzasu(t) << "\n";
+
+	*/
 }
