@@ -1,11 +1,13 @@
 #include "pliki.h"
-
+#include <Windows.h>
 #include<string>
 using std::bitset;
 
+
+
 void pliki() {
-	tworzeniePlikow("plik1.bin", 2, 0x55);
-	tworzeniePlikow("plik2.bin", 2, 0x50);
+	tworzeniePlikow("plik1.bin", 100, 0x55);
+	tworzeniePlikow("plik2.bin", 100, 0x55);
 	tworzeniePlikow("plik3.bin", 100, 0x55);
 	tworzeniePlikow("plik4.bin", 100, 0x55);
 	tworzeniePlikow("plik5.bin", 1024 * 1024 * 400, 0x55);
@@ -17,7 +19,7 @@ void tworzeniePlikow(const string nazwaPliku, const int licznik, const char wart
 	srand(time(NULL));
 	ifstream mojPlik;
 
-	const char innyZnak = 0x44;
+	const char innyZnak = 0x35;
 	int losoweMiejsca[10] = {};
 	bool jestOk = false;
 	int temp = {};
@@ -112,92 +114,93 @@ void tworzeniePlikow(const string nazwaPliku, const int licznik, const char wart
 
 }
 
-void dzialaniaNaPlikach(const char* _plik1, const char* _plik2) {
+void dzialaniaNaPlikach(const string _plik1, const string _plik2) {
 	clock_t t;
-	ifstream plik1, plik2;
-	int iloscBitow = 0;
-	int x{};
+	ifstream plik1(_plik1, ios::binary | ios::in);
+	ifstream plik2(_plik2, ios::binary | ios::in);
+	long long int iloscBitow = 0, ber{};
 
 	char a{};
 	char b{};
-	cout << "Obliczam, prosze o cierpliwosc...";
-	plik1.open(_plik1, ios::binary | ios::in);
-	plik2.open(_plik2, ios::binary | ios::in);
+	
+	if(_plik1 == _plik2) {
+		plikLog("- uzytkownik podal 2 takie same pliki\n");
+		cout << "\n Podaj prosze 2 rozne pliki!!\n";
+	}
 
-	t = clock();
-	while (!plik1.eof())
-	{
-		plik1 >> a;
-		plik2 >> b;
-		bitset<8> bit(a);
-		bitset<8> bit2(b);
+	else if (!plik1) {
 
-		if (a == '\0' || b == '\0') break;
+		cout << "Plik: '" + _plik1 + "' prawdopodobnie nie istnieje\n";
+		system("pause");
+		plikLog("- nie znaleziono pliku: " + _plik1);
 
-		//cout << "\n" << bit << "\n" << bit2 << "\n";
-		x = hammingDistance(a, b) + x;
-		iloscBitow = iloscBitow + 8;
-		a = '\0';
-		b = '\0';
-		/*	for (size_t i = 0; i < 8; i++)
+	}
+
+	else if (!plik2) {
+
+		cout << "Plik: '" + _plik2 + "' prawdopodobnie nie istnieje\n";
+		system("pause");
+		plikLog("- nie znaleziono pliku: " + _plik2);
+
+	}
+
+	else {
+
+		cout << " Obliczam, prosze o cierpliwosc...\n\n";
+
+		//plik1.open();
+		//plik2.open();
+
+		t = clock();
+		while (!plik1.eof())
+		{
+			plik1 >> a;
+			plik2 >> b;
+			bitset<8> bit(a);
+			bitset<8> bit2(b);
+
+			if (plik1.eof()) { break; } // dodatkowe zabezpieczenie przed znakiem konca pliku ;]
+
+			iloscBitow = iloscBitow + 8;
+
+			for (size_t i = 0; i < 8; i++)
 			{
-				iloscBitow++;
 				if (bit[i] != bit2[i]) {
-					x++;
+					ber++;
 				}
-			}*/
-		cout << "\n" << iloscBitow << " | " << x;
-	}
-	t = (clock() - t) / CLOCKS_PER_SEC;
+			}
+		}
+		//Sleep(1000);
+		t = (clock() - t) / CLOCKS_PER_SEC;
 
-	plik1.close();
-	plik2.close();
-
-
-	cout << "\n Roznych bitow: " << x << "\n sprawdzonych bitow: " << iloscBitow << "\n czas sprawdzenie: " << zamianaCzasu(t) << "\n";
-
-
-	//plik1.close();
-	//plik2.open(_plik2, ios::binary | ios::in);
-
-
-	/*
-
-	plik1.open(_plik1, ios::binary);
-
-	if (plik1.good()) {
-		plikLog("- otworzono plik 1\n");
-		plik1.read((char*)&bity, sizeof(bity));
 		plik1.close();
-		plikLog("- zamknieto plik 1\n");
-	}
-	else {
-		plikLog("- nie znaleziono pliku 1\n");
-	}
-
-	plik2.open(_plik2, ios::binary);
-
-	 if (plik2) {
-		plikLog("- otworzono plik 2\n");
-		plik2.read((char*)&bity2, sizeof(bity2));
 		plik2.close();
-		plikLog("- zamknieto plik 2\n");
+
+
+
+		cout << " Wyniki dla plikow: " + _plik1 + " i " + _plik2 + " \n"
+			" Wielkosc pliku: " + _plik1 + " = "; printSize(_plik1);
+		cout << "\n Wielkosc pliku: " + _plik2 + " = "; printSize(_plik2);
+		cout << "\n BER: " << ber << "b"
+			"\n Sprawdzonych bitow: " << iloscBitow << "b"
+			"\n czas potrzebny na sprawdzenie: " << zamianaCzasu(t) << "\n\n";
+
+		plikLog("- program wykonal obliczenia na plikach: " + _plik1 + " i " + _plik2 + "\n"
+				"- wyniki obliczen: \n"
+				"BER: " + to_string(ber) + "b\n"
+				"Sprawdzonych bitow: " + to_string(iloscBitow) + "\n"
+				"Czas obliczen: "  "\n");
+		
+	}
+}
+// funkcja sprawdzajaca wielkocs pliku znalezione w internecie https://stackoverflow.com/questions/13648066/determine-the-size-of-a-binary-file
+void printSize(const string& address) {
+	fstream motd(address.c_str(), ios::binary | ios::in | ios::ate);
+	if (motd) {
+		fstream::pos_type size = motd.tellg();
+		cout << size << "B";
 	}
 	else {
-		plikLog("- nie znaleziono pliku 2\n");
+		perror(address.c_str());
 	}
-
-
-	cout << "bity: " << bity << "\n";
-	cout << "bity2: " << bity2 << "\n";
-
-	t = clock();
-	uint8_t ber = hammingDistance(bity, bity2);
-	t = (clock() - t) / CLOCKS_PER_SEC;
-
-	cout << "Compared bits: " << bity + bity2 << "\n";
-	cout << "Different bits : " << static_cast<int>(ber) << "\n";
-	cout << "Calc time : " << zamianaCzasu(t) << "\n";
-
-	*/
 }

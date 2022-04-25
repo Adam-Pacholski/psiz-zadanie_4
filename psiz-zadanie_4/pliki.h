@@ -16,4 +16,5 @@ using namespace std;
 
 void tworzeniePlikow(const string nazwaPliku, const int licznik, const char wartosci);
 void pliki();
-void dzialaniaNaPlikach(const char* plik1, const char* plik2);
+void dzialaniaNaPlikach(const string plik1, const string plik2);
+void printSize(const string& address);

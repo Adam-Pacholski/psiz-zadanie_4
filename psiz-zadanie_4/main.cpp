@@ -16,61 +16,72 @@ void resetCin();
 int main(int argc, char* argv[])
 {
 
-
-	
-
 	if (argc == 1) menu("nie podajac ");
 	else if (argc < 3) menu("podajac za malo ");
 	else if (argc > 3) menu("podajac za duzo ");
 	else {
 		cout << argc << ": " << argv[1] << ", " << argv[2] << endl;
+		
 		dzialaniaNaPlikach(argv[1], argv[2]);
 	}
-
-	system("pause");
-	//koniecProgramu();
-
 }
 
 void menu(string wiadomosc) {
 	int opcja = {};
 	bool wyjscie = false;
 	plikLog("- uruchomiono program " + wiadomosc + "argunentow \n");
-	cout << " -------------------- MENU ---------------------- \n"
-		" ------------------------------------------------ \n"
-		" [1] - Automatyczny przyklad obliczania BER  \n"
-		"       (potrzebne min 800MB wolnego miejsca na dysku)\n"
-		" [2] - Podanie przez uzytkownika sciezek do pliku \n"
-		" [3] - Zamkniecie programu \n"
-		" ------------------------------------------------ \n";
-
 
 	do
 	{
+		system("cls");
+		cout << " ------------- Program obliczajacy BER: -------------\n";	
+		cout << " ---------------------- MENU ------------------------ \n"
+				" [1] - Automatyczny przyklad obliczania BER  \n"
+				"       (potrzebne min 800MB wolnego miejsca na dysku)\n"
+				" [2] - Podanie przez uzytkownika sciezek do pliku \n"
+				" [3] - Zamkniecie programu \n"
+				" ---------------------------------------------------- \n";
 		cout << " Co chcesz zrobic: ";
-		//cin >> opcja;
-		opcja = 1;
+		cin >> opcja;
+		
 		if (opcja) {
 
 			switch (opcja)
 			{
 			case 1:
 			{
+
 				plikLog("- Uzytkownik wybral opcje [1] - automatyczne obliczenia BER\n");
 				pliki();
-				//dzialaniaNaPlikach("plik1.bin", "plik2.bin");
-				//dzialaniaNaPlikach("plik3.bin", "plik4.bin");
+				system("cls");
+
+				cout << "TEST 1 \n";
+				dzialaniaNaPlikach("plik1.bin", "plik2.bin");
+				cout << "TEST 2\n";
+				dzialaniaNaPlikach("plik3.bin", "plik4.bin");
+				cout << "TEST 3\n";
 				dzialaniaNaPlikach("plik5.bin", "plik6.bin");
-			}
+				system("pause");
+			} break;
 			case 2:
 			{
+				plikLog("- Uzytkownik wybral opcje [2] - podanie sciezek do plikow\n");
+				string arg1{}, arg2{};
 
-			}
+				cout << " Podaj sciezke do 1 pliku: ";
+				cin >> arg1;
+				cout << " Podaj sciezke do 2 pliku: ";
+				cin >> arg2;
+
+				dzialaniaNaPlikach(arg1, arg2);	
+				system("pause");
+
+			} break;
 			case 3:
 			{
 				wyjscie = true;
-				plikLog("- program zostal poprawnie zakonczony\n");
-			}
+				plikLog("-uzytkownik zakonczyl dzialanie programu\n");
+			} break;
 			default:
 				break;
 			}
@@ -79,10 +90,9 @@ void menu(string wiadomosc) {
 			cout << "Wprowadzono bledna opcje" << endl;
 			resetCin();
 		}
+
+		resetCin();
 	} while (!wyjscie);
-
-
-	
 
 }
 
@@ -101,7 +111,7 @@ void koniecProgramu() {
 
 	} while (!zamknac);
 
-	plikLog("- program zostal poprawnie zakonczony\n");
+	plikLog("- program zostal zakonczony\n");
 }
 
 void resetCin() {
