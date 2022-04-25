@@ -1,8 +1,4 @@
 #include "pliki.h"
-#include <Windows.h>
-#include<string>
-using std::bitset;
-
 
 
 void pliki() {
@@ -118,7 +114,7 @@ void dzialaniaNaPlikach(const string _plik1, const string _plik2) {
 	clock_t t;
 	ifstream plik1(_plik1, ios::binary | ios::in);
 	ifstream plik2(_plik2, ios::binary | ios::in);
-	long long int iloscBitow = 0, ber{};
+	long long int iloscBitow = 0, ber = 0;
 
 	char a{};
 	char b{};
@@ -130,16 +126,14 @@ void dzialaniaNaPlikach(const string _plik1, const string _plik2) {
 
 	else if (!plik1) {
 
-		cout << "Plik: '" + _plik1 + "' prawdopodobnie nie istnieje\n";
-		system("pause");
+		cout << "Plik: '" + _plik1 + "' prawdopodobnie nie istnieje\n";	
 		plikLog("- nie znaleziono pliku: " + _plik1);
 
 	}
 
 	else if (!plik2) {
 
-		cout << "Plik: '" + _plik2 + "' prawdopodobnie nie istnieje\n";
-		system("pause");
+		cout << "Plik: '" + _plik2 + "' prawdopodobnie nie istnieje\n";	
 		plikLog("- nie znaleziono pliku: " + _plik2);
 
 	}
@@ -148,36 +142,26 @@ void dzialaniaNaPlikach(const string _plik1, const string _plik2) {
 
 		cout << " Obliczam, prosze o cierpliwosc...\n\n";
 
-		//plik1.open();
-		//plik2.open();
-
 		t = clock();
 		while (!plik1.eof())
 		{
 			plik1 >> a;
 			plik2 >> b;
-			bitset<8> bit(a);
-			bitset<8> bit2(b);
-
+			
 			if (plik1.eof()) { break; } // dodatkowe zabezpieczenie przed znakiem konca pliku ;]
 
 			iloscBitow = iloscBitow + 8;
+			ber = hammingDistance(a, b) + ber;
 
-			for (size_t i = 0; i < 8; i++)
-			{
-				if (bit[i] != bit2[i]) {
-					ber++;
-				}
-			}
 		}
-		//Sleep(1000);
+		
 		t = (clock() - t) / CLOCKS_PER_SEC;
 
 		plik1.close();
 		plik2.close();
 
 
-
+		cout << " Metoda: 'Hamming Distance'\n ";
 		cout << " Wyniki dla plikow: " + _plik1 + " i " + _plik2 + " \n"
 			" Wielkosc pliku: " + _plik1 + " = "; printSize(_plik1);
 		cout << "\n Wielkosc pliku: " + _plik2 + " = "; printSize(_plik2);
@@ -186,10 +170,11 @@ void dzialaniaNaPlikach(const string _plik1, const string _plik2) {
 			"\n czas potrzebny na sprawdzenie: " << zamianaCzasu(t) << "\n\n";
 
 		plikLog("- program wykonal obliczenia na plikach: " + _plik1 + " i " + _plik2 + "\n"
+				" Metoda: 'Hamming Distance'\n "
 				"- wyniki obliczen: \n"
 				"BER: " + to_string(ber) + "b\n"
 				"Sprawdzonych bitow: " + to_string(iloscBitow) + "\n"
-				"Czas obliczen: "  "\n");
+				"Czas obliczen: " + zamianaCzasu(t) + "\n");
 		
 	}
 }

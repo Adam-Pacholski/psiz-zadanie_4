@@ -1,80 +1,102 @@
-Mon Apr 25 12:42:52 2022
+Mon Apr 25 13:25:28 2022
 - uruchomiono program nie podajac argunentow 
 
-Mon Apr 25 12:42:56 2022
+Mon Apr 25 13:25:33 2022
 - Uzytkownik wybral opcje [1] - automatyczne obliczenia BER
 
-Mon Apr 25 12:42:56 2022
-- utworzono plik: plik1.bin
-
-Mon Apr 25 12:42:56 2022
-- utworzono plik: plik2.bin
-
-Mon Apr 25 12:42:56 2022
-- utworzono plik: plik3.bin
-
-Mon Apr 25 12:42:56 2022
-- utworzono plik: plik4.bin
-
-Mon Apr 25 12:44:00 2022
-- utworzono plik: plik5.bin
-
-Mon Apr 25 12:45:17 2022
-- utworzono plik: plik6.bin
-
-Mon Apr 25 12:45:17 2022
-- program wykonal obliczenia na plikach: plik1.bin i plik2.bin
-- wyniki obliczen: 
-BER: 0b
-Sprawdzonych bitow: 800
-Czas obliczen: 
-
-Mon Apr 25 12:45:17 2022
-- program wykonal obliczenia na plikach: plik3.bin i plik4.bin
-- wyniki obliczen: 
-BER: 20b
-Sprawdzonych bitow: 800
-Czas obliczen: 
-
-Mon Apr 25 12:52:24 2022
-- program wykonal obliczenia na plikach: plik5.bin i plik6.bin
-- wyniki obliczen: 
-BER: 838860800b
-Sprawdzonych bitow: 3355443200
-Czas obliczen: 
-
-Mon Apr 25 12:52:38 2022
-- Uzytkownik wybral opcje [1] - automatyczne obliczenia BER
-
-Mon Apr 25 12:52:38 2022
+Mon Apr 25 13:25:33 2022
 - pominiêto tworzenie pliku: plik1.bin | plik ju¿ istnieje.
 
-Mon Apr 25 12:52:38 2022
+Mon Apr 25 13:25:33 2022
 - pominiêto tworzenie pliku: plik2.bin | plik ju¿ istnieje.
 
-Mon Apr 25 12:52:38 2022
+Mon Apr 25 13:25:33 2022
 - pominiêto tworzenie pliku: plik3.bin | plik ju¿ istnieje.
 
-Mon Apr 25 12:52:38 2022
+Mon Apr 25 13:25:33 2022
 - pominiêto tworzenie pliku: plik4.bin | plik ju¿ istnieje.
 
-Mon Apr 25 12:52:38 2022
+Mon Apr 25 13:25:33 2022
 - pominiêto tworzenie pliku: plik5.bin | plik ju¿ istnieje.
 
-Mon Apr 25 12:52:38 2022
+Mon Apr 25 13:25:33 2022
 - pominiêto tworzenie pliku: plik6.bin | plik ju¿ istnieje.
 
-Mon Apr 25 12:52:39 2022
+Mon Apr 25 13:25:33 2022
 - program wykonal obliczenia na plikach: plik1.bin i plik2.bin
-- wyniki obliczen: 
+ Metoda: 'Hamming Distance'
+ - wyniki obliczen: 
 BER: 0b
 Sprawdzonych bitow: 800
-Czas obliczen: 
+Czas obliczen: 0H:0M:0s
 
-Mon Apr 25 12:52:39 2022
+Mon Apr 25 13:25:33 2022
 - program wykonal obliczenia na plikach: plik3.bin i plik4.bin
-- wyniki obliczen: 
+ Metoda: 'Hamming Distance'
+ - wyniki obliczen: 
 BER: 20b
 Sprawdzonych bitow: 800
-Czas obliczen: 
+Czas obliczen: 0H:0M:0s
+
+Mon Apr 25 13:29:12 2022
+- program wykonal obliczenia na plikach: plik5.bin i plik6.bin
+ Metoda: 'Hamming Distance'
+ - wyniki obliczen: 
+BER: 838860800b
+Sprawdzonych bitow: 3355443200
+Czas obliczen: 0H:3M:39s
+
+Mon Apr 25 13:29:21 2022
+-uzytkownik zakonczyl dzialanie programu
+
+Mon Apr 25 13:41:53 2022
+- uruchomiono program nie podajac argunentow 
+
+Mon Apr 25 13:41:56 2022
+- Uzytkownik wybral opcje [1] - automatyczne obliczenia BER
+
+Mon Apr 25 13:41:56 2022
+- pominiêto tworzenie pliku: plik1.bin | plik ju¿ istnieje.
+
+Mon Apr 25 13:41:56 2022
+- pominiêto tworzenie pliku: plik2.bin | plik ju¿ istnieje.
+
+Mon Apr 25 13:41:56 2022
+- pominiêto tworzenie pliku: plik3.bin | plik ju¿ istnieje.
+
+Mon Apr 25 13:41:56 2022
+- pominiêto tworzenie pliku: plik4.bin | plik ju¿ istnieje.
+
+Mon Apr 25 13:41:56 2022
+- pominiêto tworzenie pliku: plik5.bin | plik ju¿ istnieje.
+
+Mon Apr 25 13:41:56 2022
+- pominiêto tworzenie pliku: plik6.bin | plik ju¿ istnieje.
+
+Mon Apr 25 13:41:56 2022
+- program wykonal obliczenia na plikach: plik1.bin i plik2.bin
+ Metoda: 'bitset'
+ - wyniki obliczen: 
+BER: 0b
+Sprawdzonych bitow: 800
+Czas obliczen: 0H:0M:0s
+
+Mon Apr 25 13:41:56 2022
+- program wykonal obliczenia na plikach: plik3.bin i plik4.bin
+ Metoda: 'bitset'
+ - wyniki obliczen: 
+BER: 20b
+Sprawdzonych bitow: 800
+Czas obliczen: 0H:0M:0s
+
+Mon Apr 25 13:48:49 2022
+- program wykonal obliczenia na plikach: plik5.bin i plik6.bin
+ Metoda: 'bitset'
+ - wyniki obliczen: 
+BER: 838860800b
+Sprawdzonych bitow: 3355443200
+Czas obliczen: 0H:6M:52s
+
+Mon Apr 25 13:52:52 2022
+-uzytkownik zakonczyl dzialanie programu
 

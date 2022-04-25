@@ -5,6 +5,8 @@
 #include<algorithm>
 #include <time.h>
 
+#include<string>
+
 #include <vector>
 #include <bitset>
 
