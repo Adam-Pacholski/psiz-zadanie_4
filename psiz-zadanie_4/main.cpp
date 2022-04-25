@@ -1,11 +1,8 @@
 
 #include <iostream>
-
+#include <limits>
 #include "plikLog.h"
 #include "pliki.h"
-
-
-//testy
 
 using namespace std;
 
@@ -21,7 +18,7 @@ int main(int argc, char* argv[])
 	else if (argc > 3) menu("podajac za duzo ");
 	else {
 		cout << argc << ": " << argv[1] << ", " << argv[2] << endl;
-		
+
 		dzialaniaNaPlikach(argv[1], argv[2]);
 	}
 }
@@ -34,64 +31,60 @@ void menu(string wiadomosc) {
 	do
 	{
 		system("cls");
-		cout << " ------------- Program obliczajacy BER: -------------\n";	
+		cout << " ------------- Program obliczajacy BER: -------------\n";
 		cout << " ---------------------- MENU ------------------------ \n"
-				" [1] - Automatyczny przyklad obliczania BER  \n"
-				"       (potrzebne min 800MB wolnego miejsca na dysku)\n"
-				" [2] - Podanie przez uzytkownika sciezek do pliku \n"
-				" [3] - Zamkniecie programu \n"
-				" ---------------------------------------------------- \n";
+			" [1] - Automatyczny przyklad obliczania BER  \n"
+			"       (potrzebne min 800MB wolnego miejsca na dysku)\n"
+			" [2] - Podanie przez uzytkownika sciezek do pliku \n"
+			" [3] - Zamkniecie programu \n"
+			" ---------------------------------------------------- \n";
 		cout << " Co chcesz zrobic: ";
 		cin >> opcja;
-		
-		if (opcja) {
 
-			switch (opcja)
-			{
-			case 1:
-			{
 
-				plikLog("- Uzytkownik wybral opcje [1] - automatyczne obliczenia BER\n");
-				pliki();
-				system("cls");
+		switch (opcja)
+		{
+		case 1:
+		{
 
-				cout << "TEST 1 \n";
-				dzialaniaNaPlikach("plik1.bin", "plik2.bin");
-				cout << "TEST 2\n";
-				dzialaniaNaPlikach("plik3.bin", "plik4.bin");
-				cout << "TEST 3\n";
-				dzialaniaNaPlikach("plik5.bin", "plik6.bin");
-				system("pause");
-			} break;
-			case 2:
-			{
-				plikLog("- Uzytkownik wybral opcje [2] - podanie sciezek do plikow\n");
-				string arg1{}, arg2{};
+			plikLog("- Uzytkownik wybral opcje [1] - automatyczne obliczenia BER\n");
+			pliki();
+			system("cls");
 
-				cout << " Podaj sciezke do 1 pliku: ";
-				cin >> arg1;
-				cout << " Podaj sciezke do 2 pliku: ";
-				cin >> arg2;
+			cout << "TEST 1 \n";
+			dzialaniaNaPlikach("plik1.bin", "plik2.bin");
+			cout << "TEST 2\n";
+			dzialaniaNaPlikach("plik3.bin", "plik4.bin");
+			cout << "TEST 3\n";
+			dzialaniaNaPlikach("plik5.bin", "plik6.bin");
+			system("pause");
+		} break;
+		case 2:
+		{
+			plikLog("- Uzytkownik wybral opcje [2] - podanie sciezek do plikow\n");
+			string arg1{}, arg2{};
 
-				dzialaniaNaPlikach(arg1, arg2);	
-				system("pause");
+			cout << " Podaj sciezke do 1 pliku: ";
+			cin >> arg1;
+			cout << " Podaj sciezke do 2 pliku: ";
+			cin >> arg2;
 
-			} break;
-			case 3:
-			{
-				wyjscie = true;
-				plikLog("-uzytkownik zakonczyl dzialanie programu\n");
-			} break;
-			default:
-				break;
-			}
-		}
-		else {
-			cout << "Wprowadzono bledna opcje" << endl;
+			dzialaniaNaPlikach(arg1, arg2);
+			system("pause");
+
+		} break;
+		case 3:
+		{
+			wyjscie = true;
+			plikLog("- uzytkownik zakonczyl dzialanie programu\n");
+		} break;
+		default:
+			cout << "Podano zla wartosc \n";
+			system("pause");
 			resetCin();
 		}
 
-		resetCin();
+		
 	} while (!wyjscie);
 
 }
